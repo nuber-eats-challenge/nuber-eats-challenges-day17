@@ -18,6 +18,7 @@ import {
   EpisodesSearchInput,
   GetAllPodcastsOutput,
   GetEpisodeOutput,
+  SearchPodcastsOutput,
 } from './dtos/podcast.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -29,7 +30,7 @@ export class PodcastsService {
     private readonly podcastRepository: Repository<Podcast>,
     @InjectRepository(Episode)
     private readonly episodeRepository: Repository<Episode>,
-  ) {}
+  ) { }
 
   private readonly InternalServerErrorOutput = {
     ok: false,

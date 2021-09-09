@@ -11,7 +11,7 @@ export class GetAllPodcastsOutput extends CoreOutput {
 }
 
 @InputType()
-export class PodcastSearchInput extends PickType(Podcast, ['id'], InputType) {}
+export class PodcastSearchInput extends PickType(Podcast, ['id'], InputType) { }
 
 @ObjectType()
 export class PodcastOutput extends CoreOutput {
@@ -38,4 +38,10 @@ export class EpisodesSearchInput {
 
 export class GetEpisodeOutput extends CoreOutput {
   episode?: Episode;
+}
+
+@ObjectType()
+export class SearchPodcastsOutput extends CoreOutput {
+  @Field(type => [Podcast], { nullable: true })
+  podcasts?: Podcast[];
 }

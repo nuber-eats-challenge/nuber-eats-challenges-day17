@@ -8,5 +8,6 @@ import { Episode } from './entities/episode.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Podcast, Episode])],
   providers: [PodcastsService, PodcastsResolver, EpisodeResolver],
+  exports: [PodcastsService]
 })
 export class PodcastsModule {}

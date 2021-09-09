@@ -9,6 +9,8 @@ import { UsersModule } from './users/users.module';
 import { JwtModule } from './jwt/jwt.module';
 import { JwtMiddleware } from './jwt/jwt.middleware';
 import { AuthModule } from './auth/auth.module';
+import { Review } from './listener/entities/review.entity';
+import { ListenerModule } from './listener/listener.module';
 
 @Module({
   imports: [
@@ -17,7 +19,7 @@ import { AuthModule } from './auth/auth.module';
       database: 'db.sqlite3',
       synchronize: true,
       logging: process.env.NODE_ENV !== 'test',
-      entities: [Podcast, Episode, User],
+      entities: [Podcast, Episode, User, Review],
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: true,
@@ -30,7 +32,8 @@ import { AuthModule } from './auth/auth.module';
     }),
     PodcastsModule,
     UsersModule,
-    AuthModule
+    AuthModule,
+    ListenerModule
   ],
 })
 export class AppModule {

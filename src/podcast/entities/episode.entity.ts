@@ -1,10 +1,12 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, InputType } from '@nestjs/graphql';
 import { IsString } from 'class-validator';
-import { Column, Entity, ManyToOne, RelationId } from 'typeorm';
+import { User } from 'src/users/entities/user.entity';
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, RelationId } from 'typeorm';
 import { CoreEntity } from './core.entity';
 import { Podcast } from './podcast.entity';
 
 @Entity()
+@InputType('EpisodeInputType', { isAbstract: true })
 @ObjectType()
 export class Episode extends CoreEntity {
   @Column()
@@ -22,4 +24,8 @@ export class Episode extends CoreEntity {
   })
   @Field(type => Podcast)
   podcast: Podcast;
+
+  @OneToMany(() => User, user => user.episode)
+  @Field(() => [User])
+  users: User[];
 }
